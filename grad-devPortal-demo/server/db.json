@@ -1,0 +1,34 @@
+{
+    "signup": [
+      {
+      "username": "rmj",
+      "first_name":"redha",
+      "last_name": "Abbood ",
+      "email": "r@gmail.com",
+      "password": "111111",
+      "id": 1
+    },
+    {
+      "username": "pj",
+      "first_name":"pj",
+      "last_name": "oconall",
+      "role": "Qa",
+      "email": "pj@gmail.com",
+      "password": "222222",
+      "id": 2
+    },
+    {
+      "username": "XX_76",
+      "first_name":"xy",
+      "last_name": "y",
+      "role": "Manger",
+      "email": "x@gmail.com",
+      "password": "333333",
+      "id": 3
+    }
+    ],
+    "post": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }

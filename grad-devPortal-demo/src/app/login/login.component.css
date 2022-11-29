@@ -87,9 +87,9 @@ a {
   font-weight: bold;
 }
 
-hr {
+/* hr { */
   /* width: 33%; */
-}
+/* } */
 
 html {
   display: flex;
