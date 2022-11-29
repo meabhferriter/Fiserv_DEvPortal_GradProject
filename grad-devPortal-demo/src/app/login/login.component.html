@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <img src="assets/images/logo_white.svg" alt="not working" class="centre" />
+    <hr />
+    <div class="container">
+      <h1>Sign in</h1>
+      <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+        <label for="username">Username</label>
+        <mat-form-field appearance="outline">
+          <mat-label style="color: black">Type here</mat-label>
+          <input
+            matInput
+            id="username"
+            type="text"
+            formControlName="username"
+          />
+        </mat-form-field>
+        <span
+          *ngIf="
+            !signInForm.get('username').valid &&
+            signInForm.get('username').touched
+          "
+          >Please enter a valid username</span
+        >
+        <label for="password">Password</label>
+        <mat-form-field appearance="outline">
+          <mat-label style="color: black">Type here</mat-label>
+          <input
+            matInput
+            id="password"
+            type="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+        <span
+          *ngIf="
+            !signInForm.get('password').valid &&
+            signInForm.get('password').touched
+          "
+          >Please enter a valid password</span
+        >
+      </form>
+      <a routerLink="/resetPassword" class="p1">Forgot your password?</a>
+      <button mat-raised-button class="btn-login" (click)="onLogin()">
+        Login
+      </button>
+      <p class="p2">
+        First time at Portal? <a routerLink="/register">Register</a>
+      </p>
+    </div>
+  </body>
+</html>
