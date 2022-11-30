@@ -4,12 +4,14 @@ import { HomeDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AppLoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppLoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-  { path: 'homeDashboard', component: HomeDashboardComponent },
+  { path: 'userDashboard', component: HomeDashboardComponent },
+  { path: 'adminDashboard', component: AdminDashboardComponent },
 ];
 
 @NgModule({

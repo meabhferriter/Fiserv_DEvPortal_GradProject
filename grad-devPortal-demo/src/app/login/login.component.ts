@@ -29,6 +29,7 @@ export class AppLoginComponent implements OnInit {
     this.signInForm = this.fb.group({
       username: new FormControl([''], Validators.required),
       password: new FormControl([''], Validators.required),
+      role: new FormControl(['']),
     });
   }
 
@@ -37,7 +38,7 @@ export class AppLoginComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/signup').subscribe(
       (res) => {
         const user = res.find((a: any) => {
-          console.log(a.username, a.password);
+          console.log(a.username, a.password, a.role);
           return (
             a.username === this.signInForm.value.username &&
             a.password === this.signInForm.value.password
@@ -48,7 +49,12 @@ export class AppLoginComponent implements OnInit {
         if (user) {
           alert('login Success');
           this.signInForm.reset();
-          this.router.navigate(['/homeDashboard']);
+
+          if (user.role === 'user') {
+            this.router.navigate(['/userDashboard']);
+          } else {
+            this.router.navigate(['/adminDashboard']);
+          }
         } else {
           alert('user not found');
           this.router.navigate(['/register']);
