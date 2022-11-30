@@ -1,24 +1,20 @@
 <html>
-  <head> </head>
-  <div class="logo">
-    <img src="assets/images/logo_white.svg" alt="not working" class="centre" />
-  </div>
-
-  <hr />
   <body>
-    <div class="heading">
+    <img src="assets/images/logo_white.svg" alt="not working" class="centre" />
+    <hr />
+    <div class="container">
       <h1>Sign in</h1>
     </div>
     <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
       <div class="form-group block">
         <label for="username">Username</label>
+
         <input
           id="username"
           type="text"
+          required
+          username
           formControlName="username"
-          class="form-control"
-          aria-describedby="emailHelp"
-          placeholder="Type here"
         />
 
         <span
@@ -29,14 +25,15 @@
           >Please enter a valid username</span
         >
         <label for="password">Password</label>
+
         <input
           id="password"
           type="password"
+          required
+          password
           formControlName="password"
-          class="form-control"
-          aria-describedby="emailHelp"
-          placeholder="Type here"
         />
+
         <span
           *ngIf="
             !signInForm.get('password').valid &&

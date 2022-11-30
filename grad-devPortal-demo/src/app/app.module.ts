@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppLoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -23,9 +24,14 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // MatInputModule,
+    // MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    // MatCardModule,
+    // MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
