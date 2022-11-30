@@ -100,14 +100,6 @@ hr {
   width: 50%;
 }
 
-/*
-html {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-} */
-
 html {
   background-color: rgb(244, 244, 244);
   height: 950px;
@@ -118,18 +110,7 @@ html {
   margin: 0;
 }
 
-/* .logo,
-.heading,
-.registerLink,
-.block {
-  background-color: rgb(244, 244, 244);
-} */
-
 .buttonDiv,
 .password {
   padding: 15px;
 }
-
-/* .password {
-  text-align: right;
-} */

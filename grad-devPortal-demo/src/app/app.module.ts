@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [

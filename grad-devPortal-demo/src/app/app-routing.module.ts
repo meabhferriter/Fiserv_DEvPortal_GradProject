@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AppLoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
