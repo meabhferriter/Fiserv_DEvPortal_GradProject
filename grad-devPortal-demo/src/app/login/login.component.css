@@ -111,7 +111,7 @@ html {
 html {
   background-color: rgb(244, 244, 244);
   height: 950px;
-  width: 950;
+  width: 1950px;
 
   display: flex;
   flex-direction: column;
