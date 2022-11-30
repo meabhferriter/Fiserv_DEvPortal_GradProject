@@ -1,20 +1,26 @@
 <html>
-  <body>
+  <head> </head>
+  <div class="logo">
     <img src="assets/images/logo_white.svg" alt="not working" class="centre" />
-    <hr />
-    <div class="container">
+  </div>
+
+  <hr />
+  <body>
+    <div class="heading">
       <h1>Sign in</h1>
-      <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+    </div>
+    <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+      <div class="form-group block">
         <label for="username">Username</label>
-        <mat-form-field appearance="outline">
-          <mat-label style="color: black">Type here</mat-label>
-          <input
-            matInput
-            id="username"
-            type="text"
-            formControlName="username"
-          />
-        </mat-form-field>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Type here"
+        />
+
         <span
           *ngIf="
             !signInForm.get('username').valid &&
@@ -23,15 +29,14 @@
           >Please enter a valid username</span
         >
         <label for="password">Password</label>
-        <mat-form-field appearance="outline">
-          <mat-label style="color: black">Type here</mat-label>
-          <input
-            matInput
-            id="password"
-            type="password"
-            formControlName="password"
-          />
-        </mat-form-field>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Type here"
+        />
         <span
           *ngIf="
             !signInForm.get('password').valid &&
@@ -39,11 +44,17 @@
           "
           >Please enter a valid password</span
         >
-      </form>
+      </div>
+    </form>
+    <div class="password">
       <a routerLink="/resetPassword" class="p1">Forgot your password?</a>
-      <button mat-raised-button class="btn-login" (click)="onLogin()">
+    </div>
+    <div class="buttonDiv">
+      <button mat-raised-button class="btn btn-login" (click)="onLogin()">
         Login
       </button>
+    </div>
+    <div class="registerLink">
       <p class="p2">
         First time at Portal? <a routerLink="/register">Register</a>
       </p>
