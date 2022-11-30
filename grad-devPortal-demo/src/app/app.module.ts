@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeDashboardComponent } from './user-dashboard/user-dashboard.componen
     RegisterComponent,
     ResetPasswordComponent,
     HomeDashboardComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     AppRoutingModule,
