@@ -27,9 +27,8 @@ export class AppLoginComponent implements OnInit {
     //Initialise form
     // this.signInForm = new FormGroup({
     this.signInForm = this.fb.group({
-      username: new FormControl([''], Validators.required),
-      password: new FormControl([''], Validators.required),
-      role: new FormControl(['']),
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
     });
   }
 
@@ -44,12 +43,11 @@ export class AppLoginComponent implements OnInit {
             a.password === this.signInForm.value.password
           );
         });
-        console.log(user);
+        console.log(this.signInForm);
 
         if (user) {
           alert('login Success');
           this.signInForm.reset();
-
           if (user.role === 'user') {
             this.router.navigate(['/userDashboard']);
           } else {
@@ -57,7 +55,7 @@ export class AppLoginComponent implements OnInit {
           }
         } else {
           alert('user not found');
-          this.router.navigate(['/register']);
+          this.signInForm.reset();
         }
       },
       (err) => {

@@ -34,6 +34,7 @@
 
 label {
   display: block;
+  font-weight: bold;
 }
 
 input {
@@ -62,21 +63,11 @@ h1 {
 }
 
 .p2 {
+  /* display: block; */
   /* padding-bottom: 200px; */
   font-size: 12px;
-  text-align: right;
+  text-align: centre;
   /* padding-top: 20%; */
-}
-
-body {
-  /* width: 100%; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(244, 244, 244);
-  flex-direction: column;
-  margin: 0;
-  /* min-height: 100%; */
 }
 
 head {
@@ -100,17 +91,37 @@ hr {
   width: 50%;
 }
 
-html {
+.openingDiv {
   background-color: rgb(244, 244, 244);
   height: 950px;
-  width: 1950px;
-
+  /* width: 1950px; */
+  /* height: auto; */
+  width: auto;
   display: flex;
   flex-direction: column;
   margin: 0;
+  align-items: center;
+}
+
+body {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(244, 244, 244);
+  flex-direction: column;
+  margin: 0;
+  /* min-height: 100%; */
 }
 
 .buttonDiv,
 .password {
   padding: 15px;
+}
+
+.helpMsg {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: red;
 }

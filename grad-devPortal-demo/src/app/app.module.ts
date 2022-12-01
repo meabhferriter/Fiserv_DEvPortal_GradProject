@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     ResetPasswordComponent,
     HomeDashboardComponent,
     AdminDashboardComponent,
+    HeaderComponent,
   ],
   imports: [
     AppRoutingModule,
