@@ -7,6 +7,8 @@ import { AppLoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -28,7 +30,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
-    FormsModule,
+    FormsModule,NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent],
