@@ -13,7 +13,7 @@
 
 .main-nav {
   display: inline-block;
-  text-align: left;
+  text-align: center;
   margin-left: 300px;
   width: calc(100% - 80px);
   width: auto;
@@ -22,6 +22,7 @@
 }
 
 .main-nav__items {
+  display: block;
   margin: 0;
   padding: 0;
   list-style: none;

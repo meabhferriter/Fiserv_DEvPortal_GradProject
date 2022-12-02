@@ -7,6 +7,9 @@ import { AppLoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -14,6 +17,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { UserTypeService } from './services/user-type/user-type.service';
 
 @NgModule({
   declarations: [
@@ -31,8 +35,11 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
-  providers: [],
+  providers: [UserTypeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

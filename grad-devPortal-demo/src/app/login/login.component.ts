@@ -7,7 +7,8 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from '../users.service';
+import { UserTypeService } from '../services/user-type/user-type.service';
+import { UsersService } from '../services/user/users.service';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,14 @@ import { UsersService } from '../users.service';
 })
 export class AppLoginComponent implements OnInit {
   signInForm: FormGroup;
+  userType: string;
+
   constructor(
     private router: Router,
     private http: HttpClient,
     private server: UsersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private usertypeSerice: UserTypeService
   ) {}
 
   ngOnInit(): void {
@@ -33,18 +37,16 @@ export class AppLoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log(this.signInForm);
+    // console.log(this.signInForm);
     this.http.get<any>('http://localhost:3000/signup').subscribe(
       (res) => {
         const user = res.find((a: any) => {
-          console.log(a.username, a.password, a.role);
           return (
             a.username === this.signInForm.value.username &&
             a.password === this.signInForm.value.password
           );
         });
-        console.log(this.signInForm);
-
+        this.usertypeSerice.raiseEventEmiiter(user.role);
         if (user) {
           alert('login Success');
           this.signInForm.reset();
@@ -66,5 +68,6 @@ export class AppLoginComponent implements OnInit {
 
   onRegister() {
     console.log('register');
+    this.router.navigate(['/register']);
   }
 }
