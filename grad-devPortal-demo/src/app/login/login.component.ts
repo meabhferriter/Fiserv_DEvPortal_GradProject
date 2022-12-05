@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { UserTypeService } from '../services/user-type/user-type.service';
 import { UsersService } from '../services/user/users.service';
+import { UsersService } from '../users.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +27,7 @@ export class AppLoginComponent implements OnInit {
     private server: UsersService,
     private fb: FormBuilder,
     private usertypeSerice: UserTypeService
+    private popup:NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +50,10 @@ export class AppLoginComponent implements OnInit {
           );
         });
         this.usertypeSerice.raiseEventEmiiter(user.role);
+        console.log(user);
         if (user) {
-          alert('login Success');
+          // alert('login Success');
+          this.popup.success({detail:"Success Message",summary:res.message,duration:5000});
           this.signInForm.reset();
           if (user.role === 'user') {
             this.router.navigate(['/userDashboard']);
@@ -58,10 +63,21 @@ export class AppLoginComponent implements OnInit {
         } else {
           alert('user not found');
           this.signInForm.reset();
+          this.router.navigate(['/userDashboard']);
+          // if (user.role === 'user') {
+          //
+          // } else {
+          //   this.router.navigate(['/adminDashboard']);
+          // }
+        } else {
+          // alert('user not found');
+          this.popup.error({detail:"Error Message",summary:"Login Failed,Try to Sign up !!",duration:5000});
+          this.router.navigate(['/register']);
         }
       },
       (err) => {
-        alert('something went wrong ');
+        this.popup.error({detail:"Error Message",summary:"something went wrong!!",duration:5000});
+
       }
     );
   }
