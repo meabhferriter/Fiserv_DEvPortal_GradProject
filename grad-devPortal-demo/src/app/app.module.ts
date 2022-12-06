@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+
 import { HeaderComponent } from './header/header.component';
 import { UserTypeService } from './services/user-type/user-type.service';
 
@@ -27,7 +27,6 @@ import { UserTypeService } from './services/user-type/user-type.service';
     RegisterComponent,
     ResetPasswordComponent,
     HomeDashboardComponent,
-    AdminDashboardComponent,
     HeaderComponent,
   ],
   imports: [

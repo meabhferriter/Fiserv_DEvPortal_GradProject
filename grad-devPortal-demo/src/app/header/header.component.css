@@ -1,12 +1,12 @@
 .main-header {
-  width: 100%;
+  width: 100vw;
   background-color: black;
-  padding: 8px 16px;
+  padding: 0;
   margin: 0;
+  border-bottom: 2px solid white;
 }
 
-.main-header,
-.div1 {
+.main-header > div {
   display: inline-block;
   vertical-align: middle;
 }
@@ -15,15 +15,19 @@
   display: inline-block;
   text-align: center;
   margin-left: 300px;
-  width: calc(100% - 80px);
-  width: auto;
+  width: 100%;
+  /* width: 100vw; */
+  /* width: auto; */
   vertical-align: middle;
   margin: 0;
 }
 
 .main-nav__items {
   display: block;
-  margin: 0;
+  float: left;
+  /* margin: 0; */
+  margin-top: 20px;
+  margin-left: 60px;
   padding: 0;
   list-style: none;
 }
@@ -32,6 +36,7 @@
   display: inline-block;
   color: white;
   margin: 0 16px;
+  padding: 5px;
 }
 
 a {
@@ -43,7 +48,7 @@ a {
 .logo {
   padding: 10px;
   margin-left: 70px;
-  margin-top: 7px;
+  margin-top: 10px;
 }
 
 a:hover {
@@ -53,4 +58,29 @@ a:hover {
 
 a:active {
   background-color: #474545;
+}
+
+.btns {
+  margin-right: 20px;
+  /* display: inline-block; */
+  vertical-align: middle;
+}
+
+.btn-docs {
+  position: relative;
+  font-weight: bold;
+  color: white;
+  /* vertical-align: middle; */
+  text-align: right;
+}
+
+.btn-acc {
+  position: relative;
+  color: white;
+  font-weight: bold;
+  border-style: solid;
+  background-color: #ff6600;
+  width: 120px;
+  float: right;
+  /* vertical-align: middle; */
 }
