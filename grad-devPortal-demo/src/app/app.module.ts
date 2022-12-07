@@ -7,14 +7,18 @@ import { AppLoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { NgToastModule } from 'ng-angular-popup';
-
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { UserTypeService } from './services/user-type/user-type.service';
 
 @NgModule({
   declarations: [
@@ -24,15 +28,21 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     ResetPasswordComponent,
     HomeDashboardComponent,
     AdminDashboardComponent,
+    HeaderComponent,
   ],
   imports: [
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
-    FormsModule,NgToastModule
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    FormsModule,
+    NgToastModule,
   ],
-  providers: [],
+  providers: [UserTypeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

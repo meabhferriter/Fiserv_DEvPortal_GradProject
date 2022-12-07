@@ -1,0 +1,29 @@
+<body>
+  <header class="main-header">
+    <div class="div1">
+      <img src="assets/images/logo dark.png" class="logo" />
+    </div>
+    <nav class="main-nav">
+      <div *ngIf="userType === 'user'; else elseBlock">
+        <ul class="main-nav__items">
+          <li class="main-nav__item">
+            <a href="">Transactions</a>
+          </li>
+        </ul>
+      </div>
+      <<ng-template #elseBlock>
+        <ul class="main-nav__items">
+          <li class="main-nav__item">
+            <a href="">Transactions</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="">Fundings</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="">User Management</a>
+          </li>
+        </ul>
+      </ng-template>
+    </nav>
+  </header>
+</body>
