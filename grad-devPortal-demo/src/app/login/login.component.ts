@@ -44,37 +44,49 @@ export class AppLoginComponent implements OnInit {
     var ischecked=true;
     console.log(this.signInForm); 
    if(!this.signInForm.valid){
-    for(var a in this,this.signInForm.get){
-      this.signInForm.get(a).markAsTouched();
-      this.signInForm.get(a).updateValueAndValidity();
-     ischecked=false;
-    }
-   }  
+        this.popup.error({detail:"Error Message",summary:"Enter the username and Password !!!!!!",duration:5000});
+       }  
   if(this.signInForm.valid){
     this.http.get<any>('http://localhost:3000/signup').subscribe(
       (res) => {
         let UserRole="";
-        const user = res.find((a: any) => {
+        let check =false;
+        let valid =false 
+        let user = res.find((a: any) => {
             console.log("user",a.role,this.signInForm.value.username);
-             UserRole=a.role;       
-              return  (a.username===this.signInForm.value.username
-                      && a.password===this.signInForm.value.password);
-                       }); 
-                  console.log(user,UserRole);
+                          UserRole=a.role;    
+                             if (a.username===this.signInForm.value.username
+                              && a.password===this.signInForm.value.password)
+                              { valid= true 
+                                return  check=true;
+                              } 
+                             
+                              else return check ;
+                       }); //end the find 
+                  console.log('user:',user,'userRole:',UserRole);
                   if(user){
-                     if( UserRole=="Manger"){
-                        this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
-                        this.signInForm.reset();
-                        this.router.navigate(['/adminDashboard']);
-                  }else{
-                    this.router.navigate(['/userDashboard']);
-                    this.popup.success({detail:"Success Message",summary:"you are an user!!",duration:5000});
-                  }}
-                  else if(!user)     
-                      {                         
-                        this.popup.error({detail:"Error Message",summary:"Try again later!!!!!!",duration:5000});
+                  if(check && valid){
+                          if( UserRole=="Manger"){
+                              this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
+                              this.signInForm.reset();
+                              this.router.navigate(['/adminDashboard']);
+                         }else{
+                          this.router.navigate(['/userDashboard']);
+                          this.popup.success({detail:"Success Message",summary:"you are an user!!",duration:5000});
+                        }
+                      }
+                      else if(!(check && valid))
+                      {
+                        this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000}); }
+                    }
+                  else     
+                      { 
+                                    
+                        this.popup.error({detail:"Error Message",summary:"you have to register first !!!!!!",duration:5000});
                         this.router.navigate(['/register']);
                       }
+                   
+
           },err=>{
             this.popup.error({detail:"Error Message",summary:"Login Failed,try again later!!!!!!",duration:5000});
           });
