@@ -31,46 +31,53 @@ export class AppLoginComponent implements OnInit {
     this.signInForm = this.fb.group({
       username: new FormControl([''], Validators.required),
       password: new FormControl([''], Validators.required),
-      role: new FormControl(['']),
+      // role: new FormControl(['']),
     });
   }
 
   onLogin() {
-    console.log(this.signInForm);
+    var ischecked=true;
+    console.log(this.signInForm); 
+   if(!this.signInForm.valid){
+    for(var a in this,this.signInForm.get){
+      this.signInForm.get(a).markAsTouched();
+      this.signInForm.get(a).updateValueAndValidity();
+     ischecked=false;
+    }
+   }  
+  if(this.signInForm.valid){
     this.http.get<any>('http://localhost:3000/signup').subscribe(
       (res) => {
+        let UserRole="";
         const user = res.find((a: any) => {
-          console.log(a.username, a.password, a.role);
-          return (
-            a.username === this.signInForm.value.username &&
-            a.password === this.signInForm.value.password
-          );
-        });
-        console.log(user);
-        if (user) {
-          // alert('login Success');
-          this.popup.success({detail:"Success Message",summary:res.message,duration:5000});
-          this.signInForm.reset();
-          this.router.navigate(['/userDashboard']);
-          // if (user.role === 'user') {
-          //   
-          // } else {
-          //   this.router.navigate(['/adminDashboard']);
-          // }
-        } else {
-          // alert('user not found');
-          this.popup.error({detail:"Error Message",summary:"Login Failed,Try to Sign up !!",duration:5000});
-          this.router.navigate(['/register']);
-        }
-      },
-      (err) => {
-        this.popup.error({detail:"Error Message",summary:"something went wrong!!",duration:5000});
-  
-      }
-    );
-  }
+            console.log("user",a.role,this.signInForm.value.username);
+             UserRole=a.role;       
+              return  (a.username===this.signInForm.value.username
+                      && a.password===this.signInForm.value.password);
+                       }); 
+                  console.log(user,UserRole);
+                  if(user){
+                     if( UserRole=="Manger"){
+                        this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
+                        this.signInForm.reset();
+                        this.router.navigate(['/adminDashboard']);
+                  }else{
+                    this.router.navigate(['/userDashboard']);
+                    this.popup.success({detail:"Success Message",summary:"you are an user!!",duration:5000});
+                  }}
+                  else if(!user)     
+                      {                         
+                        this.popup.error({detail:"Error Message",summary:"Try again later!!!!!!",duration:5000});
+                        this.router.navigate(['/register']);
+                      }
+          },err=>{
+            this.popup.error({detail:"Error Message",summary:"Login Failed,try again later!!!!!!",duration:5000});
+          });
 
+      }}
+   
   onRegister() {
+    this.router.navigate(['/register']);
     console.log('register');
   }
 }
