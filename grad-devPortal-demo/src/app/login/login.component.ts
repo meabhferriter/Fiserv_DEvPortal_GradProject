@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { UserTypeService } from '../services/user-type/user-type.service';
 import { UsersService } from '../services/user/users.service';
+// import { UsersService } from '../users.service';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
@@ -39,55 +40,80 @@ export class AppLoginComponent implements OnInit {
   }
 
   onLogin() {
-    // console.log(this.signInForm);
-    this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
-      const user = res.find((a: any) => {
-        return (
-          a.username === this.signInForm.value.username &&
-          a.password === this.signInForm.value.password
-        );
+    var ischecked = true;
+    console.log(this.signInForm);
+    if (!this.signInForm.valid) {
+      this.popup.error({
+        detail: 'Error Message',
+        summary: 'Enter the username and Password !!!!!!',
+        duration: 5000,
       });
-
-      if (user) {
-        // alert('login Success');
-        console.log(user.role);
-        this.usertypeSerice.raiseEventEmiiter(user.role);
-        this.router.navigate(['/userDashboard']);
-        this.popup.success({
-          detail: 'Success Message',
-          summary: res.message,
-          duration: 5000,
-        });
-        this.signInForm.reset();
-      } else {
-        this.popup.error({
-          detail: 'Error Message',
-          summary: 'Login Failed,Try to Sign up !!',
-          duration: 5000,
-        });
-        this.signInForm.reset();
-        this.router.navigate(['/register']);
-      }
-      // if (user.role === 'user') {
-      //
-      // } else {
-      //   this.router.navigate(['/adminDashboard']);
-      // }
-      // } else {
-      // this.router.navigate(['/register']);
-      // this.popup.error({detail:"Error Message",summary:"Login Failed,Try to Sign up !!",duration:5000});
-
-      // }
-      // },
-      // (err) => {
-      // this.popup.error({detail:"Error Message",summary:"something went wrong!!",duration:5000});
-
-      // }
-      // );
-    });
+    }
+    if (this.signInForm.valid) {
+      this.http.get<any>('http://localhost:3000/signup').subscribe(
+        (res) => {
+          let UserRole = '';
+          let check = false;
+          let valid = false;
+          let user = res.find((a: any) => {
+            console.log('user', a.role, this.signInForm.value.username);
+            UserRole = a.role;
+            if (
+              a.username === this.signInForm.value.username &&
+              a.password === this.signInForm.value.password
+            ) {
+              valid = true;
+              return (check = true);
+            } else return check;
+          }); //end the find
+          console.log('user:', user, 'userRole:', UserRole);
+          if (user) {
+            if (check && valid) {
+              if (UserRole == 'Manger') {
+                this.popup.success({
+                  detail: 'Success Message',
+                  summary: 'you are an Admin',
+                  duration: 5000,
+                });
+                this.signInForm.reset();
+                this.router.navigate(['/adminDashboard']);
+              } else {
+                this.router.navigate(['/userDashboard']);
+                this.popup.success({
+                  detail: 'Success Message',
+                  summary: 'you are an user!!',
+                  duration: 5000,
+                });
+              }
+            } else if (!(check && valid)) {
+              this.popup.error({
+                detail: 'Error Message',
+                summary: ' username or passord wrong  !!!!!!',
+                duration: 5000,
+              });
+            }
+          } else {
+            this.popup.error({
+              detail: 'Error Message',
+              summary: 'you have to register first !!!!!!',
+              duration: 5000,
+            });
+            this.router.navigate(['/register']);
+          }
+        },
+        (err) => {
+          this.popup.error({
+            detail: 'Error Message',
+            summary: 'Login Failed,try again later!!!!!!',
+            duration: 5000,
+          });
+        }
+      );
+    }
   }
 
   onRegister() {
+    this.router.navigate(['/register']);
     console.log('register');
     this.router.navigate(['/register']);
   }
