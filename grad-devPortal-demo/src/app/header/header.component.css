@@ -1,86 +1,33 @@
-.main-header {
-  width: 100vw;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  border-bottom: 2px solid white;
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.main-header > div {
-  display: inline-block;
-  vertical-align: middle;
+nav ul li a {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.main-nav {
-  display: inline-block;
-  text-align: center;
-  margin-left: 300px;
-  width: 100%;
-  /* width: 100vw; */
-  /* width: auto; */
-  vertical-align: middle;
-  margin: 0;
-}
-
-.main-nav__items {
-  display: block;
-  float: left;
-  /* margin: 0; */
-  margin-top: 20px;
-  margin-left: 60px;
-  padding: 0;
-  list-style: none;
-}
-
-.main-nav__item {
-  display: inline-block;
+#btnAcc {
+  position: relative;
   color: white;
-  margin: 0 16px;
-  padding: 5px;
+  font-weight: bold;
+  background-color: #ff6600;
+  margin-right: 20px;
+}
+
+#btnDocs {
+  border-style: solid;
+  border-color: white;
+  background-color: black;
+  margin-right: 25px;
 }
 
 a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.logo {
+  color: black;
   padding: 10px;
-  margin-left: 70px;
-  margin-top: 10px;
 }
 
-a:hover {
-  /* background-color: #474545; */
-  color: grey;
-}
-
-a:active {
-  background-color: #474545;
-}
-
-.btns {
-  margin-right: 20px;
-  /* display: inline-block; */
-  vertical-align: middle;
-}
-
-.btn-docs {
-  position: relative;
-  font-weight: bold;
-  color: white;
-  /* vertical-align: middle; */
-  text-align: right;
-}
-
-.btn-acc {
-  position: relative;
-  color: white;
-  font-weight: bold;
-  border-style: solid;
-  background-color: #ff6600;
-  width: 120px;
-  float: right;
-  /* vertical-align: middle; */
+#dropMenu {
+  width: 20px;
 }

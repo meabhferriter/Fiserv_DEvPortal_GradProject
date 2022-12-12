@@ -1,4 +1,12 @@
 <app-header></app-header>
 <body class="body">
-  <h1>Transactions</h1>
+  <div *ngIf="userType === 'user'; else elseBlock">
+    <h3>Transactions Table</h3>
+  </div>
+  <ng-template #elseBlock>
+    <h3>Transactions Table</h3>
+    <h3>Fundings Table</h3>
+    <h3>User Management</h3>
+  </ng-template>
 </body>
+

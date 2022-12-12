@@ -50,6 +50,7 @@ export class AppLoginComponent implements OnInit {
 
       if (user) {
         // alert('login Success');
+        console.log(user.role);
         this.usertypeSerice.raiseEventEmiiter(user.role);
         this.router.navigate(['/userDashboard']);
         this.popup.success({

@@ -15,6 +15,7 @@ export class UserTypeService {
   constructor() {}
 
   raiseEventEmiiter(data: string) {
+    console.log(data);
     this.dataEmitter.next(data);
   }
 }

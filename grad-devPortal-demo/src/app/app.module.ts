@@ -40,6 +40,7 @@ import { UserTypeService } from './services/user-type/user-type.service';
     MatToolbarModule,
     FormsModule,
     NgToastModule,
+    BrowserAnimationsModule,
   ],
   providers: [UserTypeService],
   bootstrap: [AppComponent],

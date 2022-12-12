@@ -1,33 +1,64 @@
-<div class="main-header">
-  <div class="div1">
-    <img src="assets/images/logo dark.png" class="logo" />
-  </div>
-  <nav class="main-nav">
-    <div *ngIf="userType === 'user'; else elseBlock">
-      <ul class="main-nav__items">
-        <li class="main-nav__item">
-          <a href="">Transactions</a>
-        </li>
-      </ul>
+<body>
+  <div id="bottomHeader">
+    <div class="container-fluid">
+      <nav
+        class="navbar navbar-dark navbar-expand-lg"
+        style="background-color: black"
+      >
+        <a class="navbar-brand" routerLink="/userDashboard">
+          <img src="assets/images/logo dark.png" width="180px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          type="button"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul *ngIf="userType === 'user'; else elseBlock" class="navbar-nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link" style="color: white">Transactions</a>
+            </li>
+          </ul>
+          <ng-template #elseBlock>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="#" class="nav-link" style="color: white"
+                  >Transactions</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" style="color: white">Fundings</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" style="color: white"
+                  >User Management</a
+                >
+              </li>
+            </ul>
+          </ng-template>
+          <div class="ml-auto">
+            <button class="btn btn-primary" id="btnDocs">Docs</button>
+            <button
+              class="btn dropdown dropdown-toggle"
+              data-toggle="dropdown"
+              id="btnAcc"
+            >
+              My Account
+              <div class="dropdown-menu" id="dropMenu">
+                <a class="" role="button" routerLink="/resetPassword"
+                  >Reset Password</a
+                >
+              </div>
+            </button>
+          </div>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Reset</a>
+          </div>
+        </div>
+      </nav>
     </div>
-    <ng-template #elseBlock>
-      <ul class="main-nav__items">
-        <li class="main-nav__item">
-          <a href="">Transactions</a>
-        </li>
-        <li class="main-nav__item">
-          <a href="">Fundings</a>
-        </li>
-        <li class="main-nav__item">
-          <a href="">User Management</a>
-        </li>
-      </ul>
-      <div class="btns">
-        <button class="btn btn-docs">Docs</button>
-      </div>
-      <div class="btns">
-        <button class="btn btn-acc">My Account</button>
-      </div>
-    </ng-template>
-  </nav>
-</div>
+  </div>
+</body>
