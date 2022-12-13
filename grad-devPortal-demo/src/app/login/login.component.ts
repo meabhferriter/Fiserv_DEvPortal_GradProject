@@ -72,7 +72,7 @@ export class AppLoginComponent implements OnInit {
                               this.router.navigate(['/adminDashboard']);
                          }else{
                           this.router.navigate(['/userDashboard']);
-                          this.popup.success({detail:"Success Message",summary:"you are an user!!",duration:5000});
+                          this.popup.success({detail:"Success Message",summary:"you are user!!",duration:5000});
                         }
                       }
                       else if(!(check && valid))
