@@ -27,14 +27,13 @@ export class AppLoginComponent implements OnInit {
     private server: UsersService,
     private fb: FormBuilder,
     private usertypeSerice: UserTypeService,
-    private popup:NgToastService
+    private popup: NgToastService
   ) {}
 
   ngOnInit(): void {
     //Initialise form
     // this.signInForm = new FormGroup({
     this.signInForm = this.fb.group({
-
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });
@@ -90,9 +89,11 @@ export class AppLoginComponent implements OnInit {
           },err=>{
             this.popup.error({detail:"Error Message",summary:"Login Failed,try again later!!!!!!",duration:5000});
           });
+        }
+      // );
+    }
+  // }
 
-      }}
-   
   onRegister() {
     this.router.navigate(['/register']);
     console.log('register');

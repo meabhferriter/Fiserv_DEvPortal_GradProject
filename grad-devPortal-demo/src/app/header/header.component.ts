@@ -7,10 +7,12 @@ import { UserTypeService } from '../services/user-type/user-type.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  userType: string;
+
   constructor(private userTypeService: UserTypeService) {}
 
   ngOnInit(): void {
     this.userType = this.userTypeService.dataEmitter.getValue();
+    console.log(this.userType);
   }
-  userType: string;
 }

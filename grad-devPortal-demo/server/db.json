@@ -26,8 +26,36 @@
       "email": "x@gmail.com",
       "password": "333333",
       "id": 3
+    },
+    {
+      "username": "ed",
+      "firstName": "ed",
+      "lastName": "ed",
+      "merchant": "ed",
+      "company": "ed",
+      "jobTitle": "ed",
+      "email": "de",
+      "id": 4
+    },
+    {
+      "username": "wsd",
+      "firstName": "sd",
+      "lastName": "sd",
+      "merchant": "sd",
+      "company": "sd",
+      "jobTitle": "sd",
+      "email": "sd",
+      "id": 5
     }
   ],
-  "post": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "post": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserTypeService } from '../services/user-type/user-type.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-dashboard.component.css'],
 })
 export class HomeDashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private userTypeService: UserTypeService) {}
+  userType: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userType = this.userTypeService.dataEmitter.getValue();
+  }
 }

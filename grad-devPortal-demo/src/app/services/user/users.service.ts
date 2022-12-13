@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
+  URL = 'http://localhost:3000/signup';
 
-   URL='http://localhost:3000/signup';
+  logIn() {
+    return this.http.get<any>(this.URL);
+  }
 
-
-   logIn(){
-   return this.http.get<any>(this.URL);
-   }
-
-
-
+  postRegistration(data: any) {
+    return this.http.post<any>(this.URL, data);
+  }
 }

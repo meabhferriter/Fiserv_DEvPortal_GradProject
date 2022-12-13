@@ -1,21 +1,12 @@
 <app-header></app-header>
-<!-- <body>
-  <header class="main-header">
-    <div class="div1">
-      <img src="assets/images/logo dark.png" class="logo" />
-    </div>
-    <nav class="main-nav">
-      <ul class="main-nav__items">
-        <li class="main-nav__item">
-          <a href="">Transactions</a>
-        </li>
-        <li class="main-nav__item">
-          <a href="">Fundings</a>
-        </li>
-        <li class="main-nav__item">
-          <a href="">User Management</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-</body> -->
+<body class="body">
+  <div *ngIf="userType === 'user'; else elseBlock">
+    <h3>Transactions Table</h3>
+  </div>
+  <ng-template #elseBlock>
+    <h3>Transactions Table</h3>
+    <h3>Fundings Table</h3>
+    <h3>User Management</h3>
+  </ng-template>
+</body>
+
