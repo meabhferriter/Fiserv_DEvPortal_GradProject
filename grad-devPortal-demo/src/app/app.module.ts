@@ -19,6 +19,7 @@ import { HomeDashboardComponent } from './user-dashboard/user-dashboard.componen
 
 import { HeaderComponent } from './header/header.component';
 import { UserTypeService } from './services/user-type/user-type.service';
+import { DeactivateUserComponent } from './deactivate-user/deactivate-user.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserTypeService } from './services/user-type/user-type.service';
     ResetPasswordComponent,
     HomeDashboardComponent,
     HeaderComponent,
+    DeactivateUserComponent,
   ],
   imports: [
     AppRoutingModule,

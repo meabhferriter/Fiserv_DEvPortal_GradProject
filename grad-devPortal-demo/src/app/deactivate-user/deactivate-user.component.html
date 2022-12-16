@@ -1,0 +1,35 @@
+<div class="openingDiv"> 
+    <img src="assets/images/logo_white.svg" alt="not working" class="logo" />
+    <hr />
+    <div class="container-fluid">
+      <h1>  Deactivate Account  </h1>
+      <p class="pmesage"> This is will make your account Permently Unusable ,you will not able to register the same user Id <br>
+       To activate your account,please enter your password 
+    </p>
+    <form [formGroup]="signInForm">
+    <div class="form-group block"> 
+       <div class="form-group">
+          <label for="password">Password</label>
+         <input
+          id="password"
+          type="password"
+          name="password"
+          formControlName="password"
+        />
+        <span
+          *ngIf="
+            !signInForm.get('password').valid &&
+            signInForm.get('password').touched
+          "class="helpMsg"
+          >Please enter a valid password</span>
+      </div>
+      <div class="buttonDiv">
+        <button class="btn btn-login" >Reactivate</button>
+      </div>
+    </div>
+    </form>
+    </div>
+    
+
+
+</div>

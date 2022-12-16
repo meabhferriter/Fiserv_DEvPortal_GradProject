@@ -1,0 +1,102 @@
+.openingDiv {
+    background-color: rgb(244, 244, 244);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+    /* height: vh; */
+    min-height: 100vh;
+    min-width: 100vw;
+    ;
+  }
+  h1 {
+    display: block;
+    margin: auto;
+    font-size: 25px;
+    font-weight: bold;
+    width: auto;
+    text-align: center;
+  }
+  .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    width: auto;
+    mix-blend-mode: multiply;
+  }
+  .pmesage{
+    display: block;
+    margin:20px;
+    font-size: 15px;
+    font-weight: 400;
+    width: auto;
+    text-align: center;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input {
+    margin-left: auto;
+    margin-right: auto;
+    width: 450px;
+    height: 42px;
+    padding: 5px;
+  }
+  .buttonDiv,
+  .password {
+    padding: 15px;
+  }
+  
+  .helpMsg {
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: red;
+  }
+  p1 {
+    font-size: 12px;
+    color: #ff6600;
+    font-weight: bold;
+    text-align: left;
+    /* margin-bottom: 70px; */
+  }
+  
+  .p2 {
+    font-size: 12px;
+    text-align: centre;
+  }
+  
+  a {
+    font-size: 12px;
+    color: #ff6600;
+    font-weight: bold;
+  }
+  
+  hr {
+    height: 2px;
+    max-width: 510px;
+    background-color: #d9d5ca;
+    width: 50%;
+  }
+  .block {
+    align-items: center;
+    display: block;
+    margin:20px;
+    font-size: 15px;
+    font-weight: 400;
+    width: auto;
+    text-align: center;
+
+  }
+  .btn-login {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ff6600;
+    color: white;
+    width: 450px;
+    font-size: 20px;
+  }
+  
