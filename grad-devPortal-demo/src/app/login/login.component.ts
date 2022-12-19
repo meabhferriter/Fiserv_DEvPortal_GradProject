@@ -47,7 +47,7 @@ export class AppLoginComponent implements OnInit {
         this.popup.error({detail:"Error Message",summary:"Enter the username and Password !!!!!!",duration:5000});
        }  
   if(this.signInForm.valid){
-    this.http.get<any>('http://localhost:3000/signup').subscribe(
+    this.server.logIn().subscribe(
       (res) => {
         let UserRole="";
         let check =false;
