@@ -20,6 +20,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class AppLoginComponent implements OnInit {
   signInForm: FormGroup;
   userType: string;
+  loginCounter=0;
 
   constructor(
     private router: Router,
@@ -58,26 +59,40 @@ export class AppLoginComponent implements OnInit {
                               && a.password===this.signInForm.value.password)
                               { valid= true 
                                 return  check=true;
-                              } 
+                              }else if  (a.username===this.signInForm.value.username
+                                && !(a.password===this.signInForm.value.password))
+                                { valid= false 
+                                  return  check=true;
+                                } 
                              
                               else return check ;
                        }); //end the find 
+
+                      
                   console.log('user:',user,'userRole:',UserRole);
                   if(user){
-                  if(check && valid){
+                      if(check && valid){
                           if( UserRole=="Manger"){
                               this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
                               this.signInForm.reset();
                               this.router.navigate(['/adminDashboard']);
-                         }else{
-                          this.router.navigate(['/userDashboard']);
-                          this.popup.success({detail:"Success Message",summary:"you are user!!",duration:5000});
-                        }
-                      }
+                            }else{
+                             this.router.navigate(['/userDashboard']);
+                              this.popup.success({detail:"Success Message",summary:"you are user!!",duration:5000});
+                             }
+                         }
                       else if(!(check && valid))
-                      {
-                        this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000}); }
-                    }
+                          {
+                            if(this.loginCounter<3){
+                                  this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000});
+                                  this.loginCounter+=1;
+                            }
+                            else{
+                              this.router.navigate(['/deactivate-user']);
+                            }
+
+                           }
+                       }
                   else     
                       { 
                                     
@@ -100,3 +115,4 @@ export class AppLoginComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 }
+ 
