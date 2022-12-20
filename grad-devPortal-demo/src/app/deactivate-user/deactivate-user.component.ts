@@ -86,10 +86,11 @@ export class DeactivateUserComponent implements OnInit {
                       this.loginCounter+=1;
                       this.message=true;
                    }
-                    else{  console.log(this.id);
+                    else{ 
                       this.router.navigate(['/register']);
                       }
-                    // this.popup.error({detail:"Error Message",summary:"Wrong Password !!!!!!",duration:5000});
+                      if(this.loginCounter===3)
+                    this.popup.error({detail:"Error Message",summary:"Your account deactivated now !",duration:5000});
                     }              
                   
                 });
