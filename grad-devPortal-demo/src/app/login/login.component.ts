@@ -6,7 +6,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserTypeService } from '../services/user-type/user-type.service';
 import { UsersService } from '../services/user/users.service';
 // import { UsersService } from '../users.service';
@@ -21,14 +21,17 @@ export class AppLoginComponent implements OnInit {
   signInForm: FormGroup;
   userType: string;
   loginCounter=0;
-message:boolean=false;
+  
+  message:boolean=false;
+  id:string;
 
   constructor(
     private router: Router,
-    private http: HttpClient,
+    private route:ActivatedRoute,
+    // private http: HttpClient,
     private server: UsersService,
     private fb: FormBuilder,
-    private usertypeSerice: UserTypeService,
+    // private usertypeSerice: UserTypeService,
     private popup: NgToastService
   ) {}
 
@@ -38,21 +41,22 @@ message:boolean=false;
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });
+
+   
   }
 
   onLogin() {
-    var ischecked=true;
-    console.log(this.signInForm); 
-   if(!this.signInForm.valid){
-        this.popup.error({detail:"Error Message",summary:"Enter the username and Password !!!!!!",duration:5000});
-       }  
-  if(this.signInForm.valid){
-    this.server.logIn().subscribe(
-      (res) => {
-        let UserRole="";
-        let check =false;
-        let valid =false 
-        let user = res.find((a: any) => {
+      console.log(this.signInForm); 
+      if(!this.signInForm.valid){
+            this.popup.error({detail:"Error Message",summary:"Enter the username and Password !!!!!!",duration:5000});
+          }  
+      if(this.signInForm.valid){
+        this.server.logIn().subscribe(
+          (res) => {
+            let UserRole="";
+            let check =false;
+            let valid =false 
+            let user = res.find((a: any) => {
             console.log("user",a.role,this.signInForm.value.username);
                           UserRole=a.role;    
                              if (a.username===this.signInForm.value.username
@@ -61,7 +65,9 @@ message:boolean=false;
                                 return  check=true;
                               }else if  (a.username===this.signInForm.value.username
                                 && !(a.password===this.signInForm.value.password))
-                                { valid= false 
+                                {
+                                 valid= false ;
+                                  this.id=a.id;
                                   return  check=true;
                                 } 
                              else return check ;
@@ -85,8 +91,10 @@ message:boolean=false;
                                   this.loginCounter+=1;
                                   this.message=true;
                             }
-                            else{
-                              this.router.navigate(['/deactivate-user']);
+                            else{  console.log(this.id);
+                              this.router.navigate(['/deactivate-user',this.id]);
+                            
+                              
                             }
                            }
                        }

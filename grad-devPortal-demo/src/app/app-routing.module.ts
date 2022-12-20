@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'userDashboard', component: HomeDashboardComponent },
-  { path: 'deactivate-user', component: DeactivateUserComponent }
+  { path: 'deactivate-user/:id', component: DeactivateUserComponent }
 ];
 
 @NgModule({

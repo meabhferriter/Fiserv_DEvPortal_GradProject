@@ -7,7 +7,7 @@
       "role": "user",
       "email": "r@gmail.com",
       "password": "111111",
-      "id": 1
+      "id": "1"
     },
     {
       "username": "pj",
@@ -16,7 +16,7 @@
       "role": "Qa",
       "email": "pj@gmail.com",
       "password": "222222",
-      "id": 2
+      "id": "2"
     },
     {
       "username": "XX_76",
@@ -25,7 +25,7 @@
       "role": "Manger",
       "email": "x@gmail.com",
       "password": "333333",
-      "id": 3
+      "id": "3"
     },
     {
       "username": "ed",
@@ -35,7 +35,7 @@
       "company": "ed",
       "jobTitle": "ed",
       "email": "de",
-      "id": 4
+      "id": "4"
     },
     {
       "username": "wsd",
@@ -45,7 +45,7 @@
       "company": "sd",
       "jobTitle": "sd",
       "email": "sd",
-      "id": 5
+      "id": "5"
     }
   ],
   "post": [

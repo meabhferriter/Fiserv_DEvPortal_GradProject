@@ -6,7 +6,13 @@
       <p class="pmesage"> This is will make your account Permently Unusable,<br>you will not able to register the same user Id 
        <br> To activate your account,please enter your password 
     </p>
-    <form [formGroup]="signInForm">
+    <form [formGroup]="activate" (ngSubmit)="activateUser()">
+      <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span >Password wrong!You had {{loginCounter}} failed login attempts.
+               More than 3 failed attempts will deactivate your account for scurity reasons.
+                
+        </span>
+         </div>
     <div class="form-group block"> 
        <div class="form-group">
           <label for="password">Password</label>
@@ -18,13 +24,13 @@
         />
         <span
           *ngIf="
-            !signInForm.get('password').valid &&
-            signInForm.get('password').touched
+            !activate.get('password').valid &&
+            activate.get('password').touched
           "class="helpMsg"
           >Please enter a valid password</span>
       </div>
       <div class="buttonDiv">
-        <button class="btn btn-login" >Reactivate</button>
+        <button class="btn btn-login" type="submit" >Reactivate</button>
       </div>
     </div>
     </form>
