@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     this.buildRegistrationForm();
   }
 
-  buildRegistrationForm() {
+buildRegistrationForm() {
     this.registrationForm = this.fb.group({
       username: new FormControl(null, Validators.required),
       firstName: new FormControl(null, Validators.required),
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       jobTitle: new FormControl(null),
       email: new FormControl(null, Validators.required),
     });
-  }
+}
 
   onSubmit() {
     console.log(this.registrationForm);

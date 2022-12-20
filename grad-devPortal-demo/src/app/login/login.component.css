@@ -93,3 +93,12 @@ hr {
   padding-bottom: 5px;
   color: red;
 }
+.alert{
+  margin:auto;
+  width:25%;
+  max-width: 50%;
+  padding :5px 3px;
+  display: block;
+  text-align: center;
+  /* padding-t%; */
+}

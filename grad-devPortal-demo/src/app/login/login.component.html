@@ -3,8 +3,16 @@
   <hr />
   <div class="container-fluid">
     <h1>Sign in</h1>
+    <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <span >Username or Password wrong!You had {{loginCounter}} failed login attempts.
+             More than 3 failed attempts will deactivate your account for scurity reasons.
+             you can rest your password by clicking on "Forget Your Password" . 
+      </span>
+       </div>
   </div>
-  <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+   
+ 
     <div class="form-group">
       <div class="form-group block">
         <label for="username">Username</label>
@@ -49,7 +57,7 @@
   </div>
   <div class="buttonDiv">
     <button class="btn btn-login" (click)="onLogin()">Login</button>
-  </div>
+     </div>
   <div class="registerLink">
     <p class="p2">
       First time at Portal? <a routerLink="/register">Register</a>

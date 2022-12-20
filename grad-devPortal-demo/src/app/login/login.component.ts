@@ -21,6 +21,7 @@ export class AppLoginComponent implements OnInit {
   signInForm: FormGroup;
   userType: string;
   loginCounter=0;
+message:boolean=false;
 
   constructor(
     private router: Router,
@@ -33,7 +34,6 @@ export class AppLoginComponent implements OnInit {
 
   ngOnInit(): void {
     //Initialise form
-    // this.signInForm = new FormGroup({
     this.signInForm = this.fb.group({
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
@@ -64,11 +64,8 @@ export class AppLoginComponent implements OnInit {
                                 { valid= false 
                                   return  check=true;
                                 } 
-                             
-                              else return check ;
-                       }); //end the find 
-
-                      
+                             else return check ;
+                       }); //end the find                       
                   console.log('user:',user,'userRole:',UserRole);
                   if(user){
                       if(check && valid){
@@ -84,13 +81,13 @@ export class AppLoginComponent implements OnInit {
                       else if(!(check && valid))
                           {
                             if(this.loginCounter<3){
-                                  this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000});
+                                  // this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000});
                                   this.loginCounter+=1;
+                                  this.message=true;
                             }
                             else{
                               this.router.navigate(['/deactivate-user']);
                             }
-
                            }
                        }
                   else     
@@ -99,7 +96,6 @@ export class AppLoginComponent implements OnInit {
                         this.popup.error({detail:"Error Message",summary:"you have to register first !!!!!!",duration:5000});
                         this.router.navigate(['/register']);
                       }
-                   
 
           },err=>{
             this.popup.error({detail:"Error Message",summary:"Login Failed,try again later!!!!!!",duration:5000});
@@ -108,11 +104,10 @@ export class AppLoginComponent implements OnInit {
       // );
     }
   // }
-
   onRegister() {
     this.router.navigate(['/register']);
     console.log('register');
-    this.router.navigate(['/register']);
+
   }
 }
  
