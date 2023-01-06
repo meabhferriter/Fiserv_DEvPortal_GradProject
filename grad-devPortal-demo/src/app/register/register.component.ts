@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   options: string[] = ['Merchant', 'Acquirer'];
 
-  constructor(private fb: FormBuilder, private usersService: UsersService) {}
+  constructor(private fb: FormBuilder,public  usersService: UsersService) {}
 
   ngOnInit(): void {
     this.buildRegistrationForm();
@@ -31,6 +31,8 @@ buildRegistrationForm() {
       company: new FormControl(null),
       jobTitle: new FormControl(null),
       email: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+
     });
 }
 
@@ -39,15 +41,6 @@ buildRegistrationForm() {
     if (this.registrationForm.valid) {
       this.usersService
         .postRegistration(this.registrationForm.value)
-        .subscribe({
-          next: (res) => {
-            alert('Product added sucessfully');
-            this.registrationForm.reset();
-          },
-          error: () => {
-            alert('Error when registration');
-          },
-        });
-    }
+        }
   }
 }

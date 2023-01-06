@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
   FormBuilder,
+  NgForm,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserTypeService } from '../services/user-type/user-type.service';
@@ -29,7 +30,7 @@ export class AppLoginComponent implements OnInit {
     private router: Router,
     private route:ActivatedRoute,
     // private http: HttpClient,
-    private server: UsersService,
+    public server: UsersService,
     private fb: FormBuilder,
     // private usertypeSerice: UserTypeService,
     private popup: NgToastService
@@ -111,11 +112,22 @@ export class AppLoginComponent implements OnInit {
         }
       // );
     }
-  // }
+
+
+
+  
+
+
+  login(){
+    console.log(this.signInForm.value);
+    if (this.signInForm.invalid)
+    { return}
+    this.server.logIn1(this.signInForm.value);
+  }
   onRegister() {
+    
     this.router.navigate(['/register']);
     console.log('register');
 
   }
 }
- 

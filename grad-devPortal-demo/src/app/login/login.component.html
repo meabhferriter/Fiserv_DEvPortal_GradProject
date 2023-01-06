@@ -10,7 +10,7 @@
       </span>
        </div>
   </div>
-    <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="signInForm" (ngSubmit)="login()">
    
  
     <div class="form-group">
@@ -56,7 +56,7 @@
     <a routerLink="/resetPassword" class="p1">Forgot your password?</a>
   </div>
   <div class="buttonDiv">
-    <button class="btn btn-login" (click)="onLogin()">Login</button>
+    <button class="btn btn-login" (click)="login()">Login</button>
      </div>
   <div class="registerLink">
     <p class="p2">

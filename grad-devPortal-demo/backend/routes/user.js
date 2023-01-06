@@ -8,6 +8,8 @@ require("dotenv").config();
 const User = require("../models/user");
 
 router.post("/signup", (req, res, next) => {
+  // console.log( "register");
+  
   User.find({ email: req.body.email })
     .exec()
     .then(user => {
@@ -22,13 +24,20 @@ router.post("/signup", (req, res, next) => {
               error: err
             });
           } else {
+            console.log(req.body.firstName,req.body.lastName);
+            
             const user = new User({
               _id: new mongoose.Types.ObjectId(),
+              username:req.body.username,
               email: req.body.email,
-              password: hash
+              password: hash,
+              firstName:req.body.firstName,
+              lastName:req.body.firstName,
+              marchent:req.body.marchent,
+              company:req.body.company,
+              jobTitle:req.body.firstName,
             });
-            user
-              .save()
+            user.save()
               .then(result => {
                 console.log(result);
                 res.status(201).json({
@@ -48,19 +57,20 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  User.find({ email: req.body.email })
+  User.findOne({ email: req.body.email })
     .exec()
     .then(user => {
-      if (user.length < 1) {
+      if (user.length< 1) {
         return res.status(401).json({
           message: "Auth failed"
         });
       }
-      bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-        if (err) {
-          return res.status(401).json({
-            message: "Auth failed"
-          });
+      bcrypt.compare(req.body.password, user[0].password, 
+        (err, result) => {
+            if (err) {
+              return res.status(401).json({
+              message: "Auth failed"
+               });
         }
         if (result) {
           const token = jwt.sign(
@@ -72,8 +82,8 @@ router.post("/login", (req, res, next) => {
             {
                 expiresIn: "1h"
             }
-          );
-          return res.status(200).json({
+           );
+            return res.status(200).json({
             message: "Auth successful",
             token: token
           });

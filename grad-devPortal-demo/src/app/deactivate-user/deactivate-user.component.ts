@@ -50,50 +50,50 @@ export class DeactivateUserComponent implements OnInit {
       if(!this.activate.valid){
             this.popup.error({detail:"Error Message",summary:"Enter the username and Password !!!!!!",duration:5000});
           }  
-      if(this.activate.valid){
-        this.server.logIn().subscribe(
-          (res) => {
-          let user = res.find((a: any) => {
-            console.log('a.id',a.id);
+      // if(this.activate.valid){
+      //   this.server.logIn().subscribe(
+      //     (res) => {
+      //     let user = res.find((a: any) => {
+      //       console.log('a.id',a.id);
             
-                       if(this.id === a.id && a.password === this.activate.value.password ){
-                         console.log('we found the id ',a.id)
-                          this.role=a.role;
-                        return this.Pass=a.password;
-                       }
-                       else return
+      //                  if(this.id === a.id && a.password === this.activate.value.password ){
+      //                    console.log('we found the id ',a.id)
+      //                     this.role=a.role;
+      //                   return this.Pass=a.password;
+      //                  }
+      //                  else return
                         
     
-                   });//end find
-                   console.log('this.Pass',this.Pass);
+      //              });//end find
+      //              console.log('this.Pass',this.Pass);
                    
-                    if(user){
+      //               if(user){
                     
-                         if( this.role=="Manger"){
-                          this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
-                          this.activate.reset();
-                          this.router.navigate(['/adminDashboard']);
-                         }else{
-                         this.router.navigate(['/userDashboard']);
-                          this.popup.success({detail:"Success Message",summary:"you are user!!",duration:5000});
-                         }
-                      }//end if 
+      //                    if( this.role=="Manger"){
+      //                     this.popup.success({detail:"Success Message",summary:'you are an Admin',duration:5000});
+      //                     this.activate.reset();
+      //                     this.router.navigate(['/adminDashboard']);
+      //                    }else{
+      //                    this.router.navigate(['/userDashboard']);
+      //                     this.popup.success({detail:"Success Message",summary:"you are user!!",duration:5000});
+      //                    }
+      //                 }//end if 
                     
-                   if(user === undefined){
+      //              if(user === undefined){
                       
-                    if(this.loginCounter<3){
-                      // this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000});
-                      this.loginCounter+=1;
-                      this.message=true;
-                   }
-                    else{ 
-                      this.router.navigate(['/register']);
-                      }
-                      if(this.loginCounter===3)
-                    this.popup.error({detail:"Error Message",summary:"Your account deactivated now !",duration:5000});
-                    }              
+      //               if(this.loginCounter<3){
+      //                 // this.popup.error({detail:"Error Message",summary:" username or passord wrong  !!!!!!",duration:5000});
+      //                 this.loginCounter+=1;
+      //                 this.message=true;
+      //              }
+      //               else{ 
+      //                 this.router.navigate(['/register']);
+      //                 }
+      //                 if(this.loginCounter===3)
+      //               this.popup.error({detail:"Error Message",summary:"Your account deactivated now !",duration:5000});
+      //               }              
                   
-                });
+      //           });
 
 
 
@@ -103,4 +103,4 @@ export class DeactivateUserComponent implements OnInit {
 
   }
 
-}
+// }

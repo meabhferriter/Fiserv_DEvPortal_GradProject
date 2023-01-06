@@ -1,4 +1,4 @@
-const express = require("express");
+ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
@@ -33,30 +33,33 @@ app.use((req, res, next) => {
     next();
   });
  app.use("/user",userRoutes);
-app.use('/api/signup',(req,res,next)=>{
-    console.log('First midleware');
-    next();
-});
-app.get('/api/users',(req,res,next)=>{
-    res.status(200).json({
-        message:'Succesfully ',
-        user:users
-    });
+ 
+ 
+ 
+//  app.use('/api/signup',(req,res,next)=>{
+//     console.log('First midleware');
+//     next();
+// });
+// app.get('/api/users',(req,res,next)=>{
+//     res.status(200).json({
+//         message:'Succesfully ',
+//         user:users
+//     });
 
-});
+// });
 
 
-app.post("/api/signup",(req,res,next)=>{
-   let user=req.body;
-   user=user;
-   console.log(user);
-   res.status(201).json({
-    message:'user addd succsessfuly ',
-    users:user
-   });
+// app.post("/api/signup",(req,res,next)=>{
+//    let user=req.body;
+//    user=user;
+//    console.log(user);
+//    res.status(201).json({
+//     message:'user addd succsessfuly ',
+//     users:user
+//    });
 
    
     
-});
+// });
 
 module.exports=app;
