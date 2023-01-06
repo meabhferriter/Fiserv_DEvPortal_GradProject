@@ -1,37 +1,25 @@
-const express=require('express');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const User = require("./models/user");
+const userRoutes=require('./routes/user');
+
 const app=express();
-const bodyParser=require("body-parser");
-
-
-
-const users=[{
-    
-    "username": "rmj",
-    "first_name": "redha",
-    "last_name": "Abbood ",
-    "role": "user",
-    "email": "r@gmail.com",
-    "password": "111111",
-    "id": 1
-}, 
-{
-    "username": "XX_76",
-    "first_name": "xy",
-    "last_name": "y",
-    "role": "Manger",
-    "email": "x@gmail.com",
-    "password": "333333",
-    "id": 3
-},{
-    "username": "pj",
-      "first_name": "pj",
-      "last_name": "oconall",
-      "role": "Qa",
-      "email": "pj@gmail.com",
-      "password": "222222",
-      "id": 2
-}
-]
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+///connect with mongoDB 
+mongoose.Promise = global.Promise;
+mongoose.set('strictQuery',true);
+mongoose.connect('mongodb+srv://RMJ:RMJ_2022@cluster0.gmg6mgk.mongodb.net/users?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(()=>{
+  console.log('connected to the DB ');
+ }).catch(()=>{
+  console.log('connection failed' );
+ });
+///// check our midleware && CORS
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -44,9 +32,7 @@ app.use((req, res, next) => {
     );
     next();
   });
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:false}));
-
+ app.use("/user",userRoutes);
 app.use('/api/signup',(req,res,next)=>{
     console.log('First midleware');
     next();
@@ -62,7 +48,7 @@ app.get('/api/users',(req,res,next)=>{
 
 app.post("/api/signup",(req,res,next)=>{
    let user=req.body;
-   user=users;
+   user=user;
    console.log(user);
    res.status(201).json({
     message:'user addd succsessfuly ',
