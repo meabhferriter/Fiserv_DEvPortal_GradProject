@@ -5,6 +5,8 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { UsersService } from '../services/user/users.service';
 
 @Component({
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   options: string[] = ['Merchant', 'Acquirer'];
 
-  constructor(private fb: FormBuilder,public  usersService: UsersService) {}
+  constructor(private fb: FormBuilder,public  usersService: UsersService,
+    private router:Router,private popup:NgToastService) {}
 
   ngOnInit(): void {
     this.buildRegistrationForm();
@@ -40,7 +43,9 @@ buildRegistrationForm() {
     console.log(this.registrationForm);
     if (this.registrationForm.valid) {
       this.usersService
-        .postRegistration(this.registrationForm.value)
+        .postRegistration(this.registrationForm.value);
+        this.popup.success({detail:"Success Message",summary:"Register New User!!",duration:5000});
+           this.router.navigate(['/login']);
         }
   }
 }

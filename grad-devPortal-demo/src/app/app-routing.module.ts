@@ -13,6 +13,7 @@ const appRoutes: Routes = [
 
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'userDashboard', component: HomeDashboardComponent },
+  { path: 'deactivate-user', component: DeactivateUserComponent },
   { path: 'deactivate-user/:id', component: DeactivateUserComponent }
 ];
 
