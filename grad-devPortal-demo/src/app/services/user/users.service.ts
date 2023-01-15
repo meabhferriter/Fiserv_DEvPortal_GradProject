@@ -18,6 +18,7 @@ export class UsersService {
   URL = 'http://localhost:3000/signup';
   URL1 = 'http://localhost:8000/user/login';
   URL2='http://localhost:8000/user/signup';
+  Reset='http://localhost:8000/user/reset';
  
  getToken(){
    return  console.log( this.token );
@@ -33,33 +34,64 @@ export class UsersService {
             console.log(response.message,"token",response.token);
         });
  }
+ ////
+
+ getloginattempts(){
+  return this.loginCounter;
+ }
 // ..........................................................................
   logIn1(data: any) {
-    return this.http.post<{message: string;token:string,expiresIn:number,userId:any}>(this.URL1,data)
+     this.http.post<{message: string;token:string,expiresIn:number,userId:any,merchant:string,loginAttempts:number}>
+      (this.URL1,data)
            .subscribe( postData => {
-             console.log(postData.userId,postData.token);
+             console.log(postData.loginAttempts,postData.token,postData.merchant);
               this.token=postData.token;
               const exprationDuration:any= this.setAuthTimer(postData.expiresIn);
-        
-     
-                if(this.token){
-                    const expire=postData.expiresIn;
-                    console.log(this.token ,expire,"UserId",postData.userId);
-                    this.popup.success({detail:"Success Message",summary:"user autharazation !!",duration:2000});
-                    this.router.navigate(['/userDashboard']);
-                    const now =new Date();
-                    const exp=new Date(now.getTime()+exprationDuration*1000);
-                    this.saveAythData(this.token,exp);
-                }else{      
-                  console.log("UserId",postData.userId,postData.message);
-          }
-       });
+       
+                     if(this.token){
+                          const expire=postData.expiresIn;
+                          console.log(this.token ,expire,"UserId",postData.userId);
+                          this.popup.success({detail:"Success Message",summary:"user autharazation !!",duration:2000});
+                    
+                          this.router.navigate(['/userDashboard']);
+                          const now =new Date();
+                          const exp=new Date(now.getTime()+exprationDuration*1000);
+                          this.saveAythData(this.token,exp);
+              
+                     }
+             },
+             (err=>{
+                console.log('error.loginAttempts',err.error.loginAttempts,'error.message',err.error.message);
+                if(err.error.loginAttempts==2){
+                   this.loginCounter=err.error.loginAttempts;
+                }
+             })
+             );
+             
+  
   }  
 logout(){
   this.router.navigate(['/login']);
   this.popup.success({detail:"Time session Ended",summary:"Login Inv Again !!",duration:2000});
 
 }
+// /////////////////////////
+resetPass(email:any ){
+  
+  this.http.post(this.Reset,email)
+    .subscribe(result=>{
+      console.log(result);
+      
+    })
+
+
+}
+
+
+
+
+
+
 
 
 // autoAuthUser(){

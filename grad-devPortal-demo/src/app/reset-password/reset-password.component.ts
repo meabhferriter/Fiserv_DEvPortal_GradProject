@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { UsersService } from '../services/user/users.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -14,7 +15,8 @@ import {
 export class ResetPasswordComponent implements OnInit {
   resetForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+               private server:UsersService) {}
 
   ngOnInit(): void {
     this.resetForm = this.fb.group({
@@ -24,5 +26,6 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     console.log(this.resetForm.value);
+     this.server.resetPass(this.resetForm.value);
   }
 }
