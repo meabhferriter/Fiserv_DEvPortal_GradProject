@@ -41,11 +41,16 @@ buildRegistrationForm() {
 
   onSubmit() {
     console.log(this.registrationForm);
-    if (this.registrationForm.valid) {
-      this.usersService
+    if (this.registrationForm.invalid){ return ;}
+    
+     else {
+        this.usersService
         .postRegistration(this.registrationForm.value);
-        this.popup.success({detail:"Success Message",summary:"Register New User!!",duration:5000});
-           this.router.navigate(['/login']);
+          this.popup.success({detail:"Success Message",summary:"Register New User!!",duration:5000});
+          this.router.navigate(['/login']);
         }
+         
+        this.router.navigate(['/register']);
+        this.popup.error({detail:"error Message",summary:"this.usersService.getError()",duration:5000});
   }
 }

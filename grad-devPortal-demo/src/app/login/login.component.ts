@@ -23,6 +23,8 @@ export class AppLoginComponent implements OnInit {
   loginCounter=0;
   
   message:boolean=false;
+  message1:boolean=false;
+
   id:string;
 
   constructor(
@@ -45,28 +47,25 @@ export class AppLoginComponent implements OnInit {
 
   login(){
     
-      console.log(this.signInForm.value);
-    if (this.signInForm.invalid)
-    { return ;}
+   console.log(this.signInForm.value);
+     if (this.signInForm.invalid)
+            { return ;}
     else{
-        this.server.logIn1(this.signInForm.value);
-        // if(this.server.getloginattempts()==0)
-        //  { console.log('insde the login page==0 ',this.server.getloginattempts)
-        //   this.server.logIn1(this.signInForm.value);
-          this.signInForm.reset();
-        }
-      //   else{
-      //       console.log('insde the login page ==3',this.server.getloginattempts);
-            
-      //     if(this.server.getloginattempts()==3){
-      //         this.message=true;
-      //         this.router.navigate(['/deactivate-user']);
-      //   }
-      // }
-    }
+         this.server.logIn1(this.signInForm.value);
+            if(this.server.loginCounter>1 && (this.server.loginCounter<5)){
+                this.message=true;
+               }
+            if(this.server.loginCounter==5)
+              {
+                this.router.navigate(['/deactivate-user']);
+              }
+            if(this.server.loginCounter>5 ){
+                this.message1=true;
+                this.signInForm.reset();
+              }
 
-    
-  // }
+        }
+          }
   onRegister() {
     
     this.router.navigate(['/register']);
