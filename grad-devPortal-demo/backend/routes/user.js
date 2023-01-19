@@ -7,6 +7,10 @@ const checkAuth = require("../midleware/checkauth");
 require("dotenv").config();
 const User = require("../models/user");
 
+function verifyAuthtoken() {
+  return checkAuth;
+}
+
 router.post("/signup", (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
@@ -33,7 +37,6 @@ router.post("/signup", (req, res, next) => {
               company: req.body.company,
               jobTitle: req.body.jobTitle,
             });
-
             user
               .save()
               .then((result) => {
@@ -53,7 +56,6 @@ router.post("/signup", (req, res, next) => {
       }
     });
 });
-// //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.post("/login", (req, res, next) => {
   User.getAuthenticated(
@@ -75,7 +77,7 @@ router.post("/login", (req, res, next) => {
         );
         console.log(user._id);
         //verify the token
-        checkAuth;
+        verifyAuthtoken();
         res.status(200).json({
           message: "Auth successful",
           token: token,
@@ -84,21 +86,6 @@ router.post("/login", (req, res, next) => {
         });
         return;
       }
-      ///
-      switch (reason) {
-        case reason.NOT_FOUND:
-          break;
-        case reason.PASSWORD_INCORRECT:
-          // note: these cases are usually treated the same - don't tell
-          // the user *why* the login failed, only that it did
-          break;
-        case reason.MAX_ATTEMPTS:
-          // send email or otherwise notify user that account is
-          // temporarily locked
-          break;
-      }
-
-      console.log("failed attempts case ", reason);
 
       return res.status(401).json({
         message: "Auth failed",
@@ -107,8 +94,6 @@ router.post("/login", (req, res, next) => {
     }
   );
 });
-
-// .....................................
 
 router.delete("/:userId", (req, res, next) => {
   User.remove({ _id: req.params.userId })

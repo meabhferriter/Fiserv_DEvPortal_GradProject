@@ -1,41 +1,36 @@
-<div class="openingDiv"> 
-    <img src="assets/images/logo_white.svg" alt="not working" class="logo" />
-    <hr />
-    <div class="container-fluid">
-      <h1>  Deactivate Account  </h1>
-      <p class="pmesage"> This is will make your account Permently Unusable,<br>you will not able to register the same user Id 
-       <br> To activate your account,please enter your password 
+<div class="openingDiv">
+  <img src="assets/images/logo_white.svg" alt="not working" class="logo" />
+  <hr />
+  <div class="container-fluid">
+    <h1>Deactivate Account</h1>
+    <p class="pmesage">
+      This is will make your account permently unusable,<br />you will not able
+      to register the same user Id <br />
+      To activate your account,please enter your valid password .
     </p>
     <form [formGroup]="activate" (ngSubmit)="activateUser()">
-      <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
-        <span >Password wrong!You had {{loginCounter}} failed login attempts.
-               More than 3 failed attempts will deactivate your account for scurity reasons.
-                
-        </span>
-         </div>
-    <div class="form-group block"> 
-       <div class="form-group">
+      <div class="form-group block">
+        <div class="form-group">
           <label for="password">Password</label>
-         <input
-          id="password"
-          type="password"
-          name="password"
-          formControlName="password"
-        />
-        <span
-          *ngIf="
-            !activate.get('password').valid &&
-            activate.get('password').touched
-          "class="helpMsg"
-          >Please enter a valid password</span>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            formControlName="password"
+          />
+          <span
+            *ngIf="
+              !activate.get('password').valid &&
+              activate.get('password').touched
+            "
+            class="helpMsg"
+            >Please enter a valid password</span
+          >
+        </div>
+        <div class="buttonDiv">
+          <button class="btn btn-login" type="submit">Reactivate</button>
+        </div>
       </div>
-      <div class="buttonDiv">
-        <button class="btn btn-login" type="submit" >Reactivate</button>
-      </div>
-    </div>
     </form>
-    </div>
-    
-
-
+  </div>
 </div>

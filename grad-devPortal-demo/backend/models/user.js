@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 (SALT_WORK_FACTOR = 10),
   // these values can be whatever you want - we're defaulting to a
-  // max of 5 attempts, resulting in a 2 second lock
-  (MAX_LOGIN_ATTEMPTS = 5),
+  // max of 3 attempts, resulting in a 2 second lock
+  (MAX_LOGIN_ATTEMPTS = 3),
   (LOCK_TIME = 0.02 * 60 * 60 * 1000);
 
 const userSchema = mongoose.Schema({
@@ -33,7 +33,6 @@ var reasons = (userSchema.statics.failedLogin = {
 
 userSchema.virtual("isLocked").get(function () {
   // check for a future lockUntil timestamp
-
   return !!(this.lockUntil && this.lockUntil > LOCK_TIME);
 });
 
@@ -63,7 +62,6 @@ userSchema.methods.comparePassword = function (password, callback) {
     }
   });
 };
-// ......#
 userSchema.methods.incLoginAttempts = function (cb) {
   // if we have a previous lock that has expired, restart at 1
   console.log("Date.now()", Date.now(), this.lockUntil);
@@ -84,7 +82,6 @@ userSchema.methods.incLoginAttempts = function (cb) {
 userSchema.statics.getAuthenticated = function (username, password, cb) {
   this.findOne({ username: username }, function (err, user) {
     if (err) {
-      console.log("error", err);
       return cb(err);
     }
     // make sure the user exists
@@ -93,7 +90,7 @@ userSchema.statics.getAuthenticated = function (username, password, cb) {
     }
     // check if the account is currently locked
     if (user.isLocked) {
-      // just increment login attempts if account is already locked]
+      // just increment login attempts if account is already locked
       return user.incLoginAttempts(function (err) {
         if (err) return cb(err);
         return cb(null, null, reasons.MAX_ATTEMPTS);
@@ -119,8 +116,7 @@ userSchema.statics.getAuthenticated = function (username, password, cb) {
           if (err) return cb(err);
           return cb(null, user);
         });
-      } // add else
-      else {
+      } else {
         user.incLoginAttempts(function (err) {
           if (err) return cb(err);
           return cb(null, null, reasons.PASSWORD_INCORRECT);
@@ -130,5 +126,4 @@ userSchema.statics.getAuthenticated = function (username, password, cb) {
   });
 };
 
-//
 module.exports = mongoose.model("User", userSchema);

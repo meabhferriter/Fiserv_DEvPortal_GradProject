@@ -16,16 +16,22 @@ import { UsersService } from '../services/user/users.service';
 })
 export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
+  S;
   options: string[] = ['Merchant', 'Acquirer'];
+  durationPopUpMessage = 5000;
 
-  constructor(private fb: FormBuilder,public  usersService: UsersService,
-    private router:Router,private popup:NgToastService) {}
+  constructor(
+    private fb: FormBuilder,
+    public usersService: UsersService,
+    private router: Router,
+    private popup: NgToastService
+  ) {}
 
   ngOnInit(): void {
     this.buildRegistrationForm();
   }
 
-buildRegistrationForm() {
+  buildRegistrationForm() {
     this.registrationForm = this.fb.group({
       username: new FormControl(null, Validators.required),
       firstName: new FormControl(null, Validators.required),
@@ -35,22 +41,27 @@ buildRegistrationForm() {
       jobTitle: new FormControl(null),
       email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
-
     });
-}
+  }
 
   onSubmit() {
     console.log(this.registrationForm);
-    if (this.registrationForm.invalid){ return ;}
-    
-     else {
-        this.usersService
-        .postRegistration(this.registrationForm.value);
-          this.popup.success({detail:"Success Message",summary:"Register New User!!",duration:5000});
-          this.router.navigate(['/login']);
-        }
-         
-        this.router.navigate(['/register']);
-        this.popup.error({detail:"error Message",summary:"this.usersService.getError()",duration:5000});
+    if (this.registrationForm.invalid) {
+      return;
+    } else {
+      this.usersService.postRegistration(this.registrationForm.value);
+      this.popup.success({
+        detail: 'Success Message',
+        summary: 'Register New User!',
+        duration: this.durationPopUpMessage,
+      });
+      this.router.navigate(['/login']);
+    }
+    this.router.navigate(['/register']);
+    this.popup.error({
+      detail: 'Error Message',
+      summary: 'Invaild Register ',
+      duration: this.durationPopUpMessage,
+    });
   }
 }

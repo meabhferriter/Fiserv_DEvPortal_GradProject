@@ -9,12 +9,12 @@ import { DeactivateUserComponent } from './deactivate-user/deactivate-user.compo
 const appRoutes: Routes = [
   { path: '', component: AppLoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component:AppLoginComponent },
+  { path: 'login', component: AppLoginComponent },
 
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'userDashboard', component: HomeDashboardComponent },
-  { path: 'deactivate-user', component: DeactivateUserComponent },
-  { path: 'deactivate-user/:id', component: DeactivateUserComponent }
+  { path: 'deactivateUser', component: DeactivateUserComponent },
+  { path: 'deactivateUser/:id', component: DeactivateUserComponent },
 ];
 
 @NgModule({

@@ -6,7 +6,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-///connect with mongoDB
 mongoose.Promise = global.Promise;
 mongoose.set("strictQuery", true);
 mongoose
@@ -24,7 +23,6 @@ mongoose
     console.log("connection failed");
   });
 
-///// check our midleware && CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
